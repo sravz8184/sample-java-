@@ -31,6 +31,7 @@
         <configuration>
           <archive>
           <manifest>
+            <addClasspath>true</addClasspath>
             <mainClass>com.coveros.demo.helloworld</mainClass>
           </manifest>
         </archive>
