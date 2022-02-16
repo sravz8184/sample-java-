@@ -50,7 +50,7 @@ pipeline {
     
         }
         stage("deploy container"){
-           def dockerRun = "docker run -p 9090:9090 -d --name webapp sravz408/webapp:latest
+           def dockerRun = "docker run -p 9090:9090 -d --name webapp sravz408/webapp:latest"
           
         }
           
