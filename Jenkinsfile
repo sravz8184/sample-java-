@@ -1,5 +1,5 @@
-node {
-    checkout scm
+Pipeline {
+      agent any
 
     tools{
         maven 'MAVEN_HOME'
@@ -34,18 +34,22 @@ node {
             }
         }
         
+        stage("Push docker Image"){
+            steps{
+             script{
+                 docker.withRegistry('https://registry.hub.docker.com', 'docker') {
 
+                def customImage = docker.build("sravz408/webapp")
+
+                /* Push the container to the custom Registry */
+                customImage.push()
+    }
         }
+                
         
         
         
     }
     
-    docker.withRegistry('https://registry.hub.docker.com', 'docker') {
-
-        def customImage = docker.build("sravz408/webapp")
-
-        /* Push the container to the custom Registry */
-        customImage.push()
-    }
+   
 
