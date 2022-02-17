@@ -1,6 +1,6 @@
 pipeline {
-    agent any
-    
+      agent any
+
     tools{
         maven 'MAVEN_HOME'
     }
@@ -9,7 +9,7 @@ pipeline {
         
         stage("checkout") {
           steps{
-           checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sravz8184/sample-java-']]]) 
+           checkout([$class: 'GitSCM', branches: [[name: '*/output']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sravz8184/sample-java-']]]) 
             }
           }
         
@@ -32,7 +32,31 @@ pipeline {
                     archiveArtifacts 'target/*.jar'
                 }
             }
-        }        
+        }
+        
+        stage("Push docker Image"){
+            steps{
+             script{
+                 docker.withRegistry('https://registry.hub.docker.com', 'docker') {
+
+                def customImage = docker.build("sravz408/webapp1")
+
+                /* Push the container to the custom Registry */
+                customImage.push()
+    }
+        }
+                      
     }
     
+        }
+        /*stage("deploy container"){
+           steps{
+             script{
+                  bat "docker run -p 9090:9090 -d --name webapp sravz408/webapp:latest"
+          
+        }
+           }     
+        }
+       */  
+    }
 }
