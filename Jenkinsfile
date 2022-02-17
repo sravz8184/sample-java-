@@ -39,7 +39,7 @@ pipeline {
              script{
                  docker.withRegistry('https://registry.hub.docker.com', 'docker') {
 
-                def customImage = docker.build("sravz408/webapp1")
+                def customImage = docker.build("sravz408/webapp2")
 
                 /* Push the container to the custom Registry */
                 customImage.push()
@@ -52,7 +52,7 @@ pipeline {
         stage("deploy container"){
            steps{
              script{
-                  bat "docker run -p 9090:9090 -d --name webapp sravz408/webapp:latest"
+                  bat "docker run -p 9090:9090 -d --name webapp sravz408/webapp2:latest"
           
         }
            }     
