@@ -39,7 +39,7 @@ pipeline {
              script{
                  docker.withRegistry('https://registry.hub.docker.com', 'docker') {
 
-                def customImage = docker.build("sravz408/webapp3")
+                def customImage = docker.build("sravz408/webapp4")
 
                 /* Push the container to the custom Registry */
                 customImage.push()
