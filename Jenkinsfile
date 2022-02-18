@@ -52,7 +52,7 @@ pipeline {
         stage("deploy container"){
            steps{
              script{
-                  bat "docker run -p 9090:9090 -d --name webapp2 sravz408/webapp4:latest"
+                  bat "docker run -p 9090:9090 -d --name webapp3 sravz408/webapp4:latest"
           
         }
            }     
