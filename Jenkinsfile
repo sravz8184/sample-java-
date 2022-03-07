@@ -34,7 +34,9 @@ pipeline {
             }
         }
           stage('Mail notification') {
-                mail bcc: '', body: 'Package build successfully', cc: '', from: '', replyTo: '', subject: 'jenkins Job', to: 'sravanthi.chn@gmail.com'
+                steps{
+                  mail bcc: '', body: 'Package build successfully', cc: '', from: '', replyTo: '', subject: 'jenkins Job', to: 'sravanthi.chn@gmail.com'
+             }
           }
      
           stage("Push docker Image"){
