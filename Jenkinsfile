@@ -33,13 +33,16 @@ pipeline {
                 }
             }
         }
-        
-        stage("Push docker Image"){
+          stage('Mail notification') {
+                mail bcc: '', body: 'Package build successfully', cc: '', from: '', replyTo: '', subject: 'jenkins Job', to: 'sravanthi.chn@gmail.com'
+          }
+     
+          stage("Push docker Image"){
             steps{
              script{
                  docker.withRegistry('https://registry.hub.docker.com', 'docker') {
 
-                def customImage = docker.build("sravz408/webapp4")
+                def customImage = docker.build("sravz408/webapp5")
 
                 /* Push the container to the custom Registry */
                 customImage.push()
@@ -52,7 +55,7 @@ pipeline {
         stage("deploy container"){
            steps{
              script{
-                  bat "docker run -p 9090:9090 -d --name webapp3 sravz408/webapp4:latest"
+                  bat "docker run -p 9090:9090 -d --name webapp4 sravz408/webapp5:latest"
           
         }
            }     
