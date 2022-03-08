@@ -3,7 +3,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class helloworld {
+public class HelloWorld {
 
   public static void main(String[] args) {
     final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("h:mm:ss a 'on' MMMM d, yyyy'.'");
