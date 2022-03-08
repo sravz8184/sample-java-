@@ -52,12 +52,12 @@ pipeline {
         stage("deploy container"){
            steps{
              script{
-                  bat "docker run -p 9090:9090 -d --name webapp sravz408/webapp:latest"  
+                  bat "docker run -p 9090:9090 -d --name webapp1 sravz408/webapp1:latest"  
                   }
                 }
             post{
                 failure{
-                    mail bcc: '', body: 'Package build successfully', cc: '', from: '', replyTo: '', subject: 'jenkins Job', to: 'sravanthi.chn@gmail.com'
+                    mail bcc: '', body: 'fail', cc: '', from: '', replyTo: '', subject: 'jenkins Job', to: 'sravanthi.chn@gmail.com'
                 }
             }   
               
